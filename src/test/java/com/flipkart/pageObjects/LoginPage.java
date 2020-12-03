@@ -1,4 +1,4 @@
-package com.inetbanking.pageObjects;
+package com.flipkart.pageObjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,31 +8,31 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
-	WebDriver ldriver;
+	WebDriver driver;
 	
-	public LoginPage(WebDriver rdriver)
+	public LoginPage(WebDriver driver)
 	{
-		ldriver=rdriver;
-		PageFactory.initElements(rdriver, this);
+		this.driver=driver;
+		PageFactory.initElements(driver, this);
 	}
+	
+	@FindBy(xpath = "//a[contains(text(),'Login')]")
+	WebElement loginButton;
 		
-	@FindBy(name="uid")
+	@FindBy(xpath="//input[@class = '_2IX_2- VJZDxU']")
 	@CacheLookup
 	WebElement txtUserName;
 	
-	@FindBy(name="password")
+	@FindBy(xpath="//input[@type='password']")
 	@CacheLookup
 	WebElement txtPassword;
 	
-	@FindBy(name="btnLogin")
+	@FindBy(xpath="//button[@type='submit']/span")
 	@CacheLookup
 	WebElement btnLogin;
 	
 	
-	@FindBy(xpath="/html/body/div[3]/div/ul/li[15]/a")
-	@CacheLookup
-	WebElement lnkLogout;
-	
+
 	
 	
 	public void setUserName(String uname)
@@ -50,12 +50,7 @@ public class LoginPage {
 	{
 		btnLogin.click();
 	}	
-	
-	public void clickLogout()
-	{
-		lnkLogout.click();
-	}
-	
+
 	
 	
 }

@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name = "com.flipkart" thread-count = "5"> 
 
-<suite name="InetBankingV1">
+
 
 	<listeners>
-		<listener class-name="com.inetbanking.utilities.Reporting" />
+		<listener class-name="com.flipkart.utilities.Reporting" />
 	</listeners>
 
 
-	<test name="BankingApp Test">
+	<test name="flipkart test" >
 		<parameter name="browser" value="chrome" />
 		<classes>
-			<class name="com.inetbanking.testCases.TC_LoginTest_001" />
-			<!--  <class name="com.inetbanking.testCases.TC_LoginDDT_002" />-->
-			<class name="com.inetbanking.testCases.TC_AddCustomerTest_003" />
-
+			<class name="com.flipkart.testCases.TC_LoginTest_001" />
+			<class name="com.flipkart.testCases.TC_ResultsValidation_002" />
+						
 		</classes>
 
 	</test>
+	
+	
 
 </suite>

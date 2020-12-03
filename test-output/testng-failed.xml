@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Failed suite [InetBankingV1]]" guice-stage="DEVELOPMENT">
+<suite name="Failed suite [com.flipkart]" guice-stage="DEVELOPMENT">
   <listeners>
-    <listener class-name="com.inetbanking.utilities.Reporting"/>
+    <listener class-name="com.flipkart.utilities.Reporting"/>
   </listeners>
-  <test thread-count="5" name="BankingApp Test(failed)(failed)">
+  <test thread-count="5" name="flipkart test(failed)">
     <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="com.inetbanking.testCases.TC_LoginDDT_002">
+      <class name="com.flipkart.testCases.TC_ResultsValidation_002">
         <methods>
-          <include name="tearDown"/>
           <include name="setup"/>
-          <include name="loginDDT" invocation-numbers="1 2 4"/>
+          <include name="searchResultValidation"/>
         </methods>
-      </class> <!-- com.inetbanking.testCases.TC_LoginDDT_002 -->
+      </class> <!-- com.flipkart.testCases.TC_ResultsValidation_002 -->
     </classes>
-  </test> <!-- BankingApp Test(failed)(failed) -->
-</suite> <!-- Failed suite [Failed suite [InetBankingV1]] -->
+  </test> <!-- flipkart test(failed) -->
+</suite> <!-- Failed suite [com.flipkart] -->

@@ -1,4 +1,4 @@
-package com.inetbanking.utilities;
+package com.flipkart.utilities;
 
 //Listener class used to generate Extent reports
 

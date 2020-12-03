@@ -1,25 +1,27 @@
-package com.inetbanking.testCases;
+package com.flipkart.testCases;
 
 
 import java.io.IOException;
-
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.inetbanking.pageObjects.LoginPage;
+import com.flipkart.pageObjects.HomePage;
+import com.flipkart.pageObjects.LoginPage;
 
 
 public class TC_LoginTest_001 extends BaseClass
 {
-
-	@Test
-	public void loginTest() throws IOException 
+	
+	
+	@Test (priority=0)
+	public void loginTest() throws IOException, InterruptedException 
 	{
+		
+		LoginPage lp=new LoginPage(driver);
 			
 		logger.info("URL is opened");
 		
-		LoginPage lp=new LoginPage(driver);
+		
 		lp.setUserName(username);
 		logger.info("Entered username");
 		
@@ -28,7 +30,11 @@ public class TC_LoginTest_001 extends BaseClass
 		
 		lp.clickSubmit();
 		
-		if(driver.getTitle().equals("Guru99 Bank Manager HomePage"))
+		Thread.sleep(30);
+		
+		
+		
+		if(driver.getTitle().equals("Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!"))
 		{
 			Assert.assertTrue(true);
 			logger.info("Login test passed");
@@ -41,4 +47,8 @@ public class TC_LoginTest_001 extends BaseClass
 		}
 		
 	}
+	
+
+	
+	
 }

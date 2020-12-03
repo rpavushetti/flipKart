@@ -1,122 +1,137 @@
-package com.inetbanking.pageObjects;
+package com.flipkart.pageObjects;
 
+import java.util.List;
+
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class AddCustomerPage {
+public class HomePage {
 
-	WebDriver ldriver;
+	WebDriver driver;
 	
-	public AddCustomerPage(WebDriver rdriver) {
-		ldriver=rdriver;
-		PageFactory.initElements(rdriver, this);
+	public HomePage(WebDriver driver) {
+		this.driver=driver;
+		PageFactory.initElements(driver, this);
 	}
 	
-	@FindBy(how = How.XPATH, using ="/html/body/div[3]/div/ul/li[2]/a")
-	@CacheLookup
-	WebElement lnkAddNewCustomer;
-
-	@FindBy(how = How.NAME, using = "name")
-	@CacheLookup
-	WebElement txtCustomerName;
-
-	@FindBy(how = How.NAME, using = "rad1")
-	@CacheLookup
-	WebElement rdGender;
-
-	@CacheLookup
-	@FindBy(how = How.ID_OR_NAME, using = "dob")
-	WebElement txtdob;
-
-	@CacheLookup
-	@FindBy(how = How.NAME, using = "addr")
-	WebElement txtaddress;
-
-	@CacheLookup
-	@FindBy(how = How.NAME, using = "city")
-	WebElement txtcity;
-
-	@CacheLookup
-	@FindBy(how = How.NAME, using = "state")
-	WebElement txtstate;
-
-	@CacheLookup
-	@FindBy(how = How.NAME, using = "pinno")
-	WebElement txtpinno;
-
-	@CacheLookup
-	@FindBy(how = How.NAME, using = "telephoneno")
-	WebElement txttelephoneno;
-
-	@CacheLookup
-	@FindBy(how = How.NAME, using = "emailid")
-	WebElement txtemailid;
-
-	@CacheLookup
-	@FindBy(how = How.NAME, using = "password")
-	WebElement txtpassword;
-
-	@CacheLookup
-	@FindBy(how = How.NAME, using = "sub")
-	WebElement btnSubmit;
 	
-	public void clickAddNewCustomer() {
-		lnkAddNewCustomer.click();
+	@FindBy(xpath="//input[@name='q']")
+	@CacheLookup
+	public 	WebElement searchMobiles;
+	
+	
+	
+	@FindBy(xpath="//button[@class='L0Z3Pu']")
+	@CacheLookup
+	public 	WebElement searchButton;
+
+	@FindBy(xpath="//div[contains(text(),'2 GB')]")
+	@CacheLookup
+	public WebElement select2GB;
+	
+	@FindBy(xpath="//input[@placeholder ='Search Brand']")
+	@CacheLookup
+	public WebElement searchBrand;
+	
+	
+	@FindBy(xpath="//div[contains(text(),'Gionee')]")
+	@CacheLookup
+	public WebElement selectBrand;
+	
+	
+	
+	
+	
+	@FindAll({@FindBy(xpath="//div[@class='_2kHMtA']//div[@class='_4rR01T']")})
+	@CacheLookup
+	public List<WebElement> resultsNameList;
+	
+
+	@FindAll({@FindBy(xpath="//div[@class='fMghEO']//li[@class='rgWa7D' and contains(text(),'RAM')]")})
+	@CacheLookup
+	public List<WebElement> resultsRAMList;
+
+	
+
+
+	public void enterSearchText(String searchText) throws InterruptedException {
+		searchMobiles.clear();
+		searchMobiles.sendKeys(searchText);
+		Thread.sleep(2000);
+		searchButton.click();
+	}
+	
+	
+	
+	public void clickRAM() {
+		select2GB.click();
+	}
+
+	public void enterBrand(String brand) {
+		searchMobiles.sendKeys(brand);
+				
+	}
+	
+	public void selectBrand() {
+		selectBrand.click();
+	}
+	
+	public boolean validateNameResultList(String mobileBrand) {
+		
+		boolean containText = false;
+		int resultSize = resultsNameList.size();
+		for(int i=0;i<resultSize;i++) {
+			String mobileName = resultsNameList.get(i).getText();
+			containText =mobileName.contains(mobileBrand);
+			if(containText==false) {
+				break;
+			}
 			
+		}
+		
+		return containText;
+		
+		
 	}
-
-	public void custName(String cname) {
-		txtCustomerName.sendKeys(cname);
+	
+	public boolean validateRAMResultList(String mobileRAM) {
+		
+		boolean containsRAM = false;
+		int resultRAMSize = resultsRAMList.size();
+		for(int i=0;i<resultRAMSize;i++) {
+			String mobileName = resultsRAMList.get(i).getText();
+			containsRAM =mobileName.contains(mobileRAM);
+			if(containsRAM==false) {
+				break;
+			}
+			
+		}
+		return containsRAM;
+		
+		
 		
 	}
 
-	public void custgender(String cgender) {
-		rdGender.click();
-	}
-
-	public void custdob(String mm,String dd,String yy) {
-		txtdob.sendKeys(mm);
-		txtdob.sendKeys(dd);
-		txtdob.sendKeys(yy);
+	public void waitforElement(WebElement element) {
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		wait.until(ExpectedConditions.visibilityOf(element));
+		
 		
 	}
 
-	public void custaddress(String caddress) {
-		txtaddress.sendKeys(caddress);
-	}
 
-	public void custcity(String ccity) {
-		txtcity.sendKeys(ccity);
-	}
-
-	public void custstate(String cstate) {
-		txtstate.sendKeys(cstate);
-	}
-
-	public void custpinno(String cpinno) {
-		txtpinno.sendKeys(String.valueOf(cpinno));
-	}
-
-	public void custtelephoneno(String ctelephoneno) {
-		txttelephoneno.sendKeys(ctelephoneno);
-	}
-
-	public void custemailid(String cemailid) {
-		txtemailid.sendKeys(cemailid);
-	}
-
-	public void custpassword(String cpassword) {
-		txtpassword.sendKeys(cpassword);
-	}
-
-	public void custsubmit() {
-		btnSubmit.click();
-	}
 	
-	
-	
+
+
+
 }

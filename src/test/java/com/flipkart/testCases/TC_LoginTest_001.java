@@ -30,7 +30,7 @@ public class TC_LoginTest_001 extends BaseClass
 		
 		lp.clickSubmit();
 		
-		Thread.sleep(30);
+		Thread.sleep(2000);
 		
 		
 		

@@ -65,12 +65,16 @@ public class HomePage {
 
 
 	public void enterSearchText(String searchText) throws InterruptedException {
-		searchMobiles.clear();
-		searchMobiles.sendKeys(searchText);
+		searchMobiles.click();
 		Thread.sleep(2000);
-		searchButton.click();
+		searchMobiles.sendKeys(searchText);
+		
+		
 	}
 	
+	public void clickSearch() {
+		searchButton.click();
+	}
 	
 	
 	public void clickRAM() {
@@ -78,7 +82,7 @@ public class HomePage {
 	}
 
 	public void enterBrand(String brand) {
-		searchMobiles.sendKeys(brand);
+		searchBrand.sendKeys(brand);
 				
 	}
 	
